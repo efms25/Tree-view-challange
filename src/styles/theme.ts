@@ -12,7 +12,11 @@ export const theme = {
       primaryTint4: "#c4cdff",
       primaryTint5: "#ecdeff",
       background: "#ffffff",
+      borderCard: "#D8DFE6",
       text: "#000000"
+    },
+    neutralCollors: {
+      gray150: "#E3EAEF",
     },
     fonts: {
       body: "Inter, sans-serif",

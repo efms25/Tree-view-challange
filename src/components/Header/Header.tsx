@@ -3,7 +3,7 @@ import tractianLogo from '../../assets/LOGO_TRACTIAN.svg'
 import GoldIcon from '../../assets/icons/Gold.svg'
 import { Container, UnitButtonsContainer } from "./Header.styles";
 
-function Header() {
+function Header(): any {
   return (
     <Container>
       <a href="#">
