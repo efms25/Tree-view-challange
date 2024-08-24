@@ -1,3 +1,4 @@
+import AssetTag from '../../components/AssetTag/AssetTag'
 import Header from '../../components/Header/Header'
 import { Container, BodyContainer, BreadcrumbContainer } from './Home.styles'
 
@@ -9,11 +10,16 @@ function Home() {
         <BodyContainer>
             <BreadcrumbContainer>
                 <div>
-                    <span class="strong-ref-page-text">Ativos</span>
-                    <span>/ Apex Unit</span>
+                    <span className="strong-ref-page-text">Ativos</span>
+                    <span className="ref-page-text">/ Apex Unit</span>
                 </div>
                 <div>
-                    tags
+                    <AssetTag isSensor isActive>
+                        Sensor de Energia
+                    </AssetTag>
+                    <AssetTag isCritical>
+                        Crítico
+                    </AssetTag>
                 </div>
             </BreadcrumbContainer>
             <div></div>

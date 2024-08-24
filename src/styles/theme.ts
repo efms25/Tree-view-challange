@@ -17,6 +17,8 @@ export const theme = {
     },
     neutralCollors: {
       gray150: "#E3EAEF",
+      gray200: "#D8DFE6",
+      gray600: "#77818C"
     },
     fonts: {
       body: "Inter, sans-serif",
