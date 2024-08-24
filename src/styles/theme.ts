@@ -13,7 +13,9 @@ export const theme = {
       primaryTint5: "#ecdeff",
       background: "#ffffff",
       borderCard: "#D8DFE6",
-      text: "#000000"
+      text: "#000000",
+      success: "#52C41A",
+      danger: "#ED3833"
     },
     neutralCollors: {
       gray150: "#E3EAEF",
