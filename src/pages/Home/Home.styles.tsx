@@ -26,13 +26,16 @@ const ContentContainer = styled.div`
   height: 100%;
   gap: 5px;
   flex: 1 1 auto;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 
 const TreeViewContainer = styled.div`
   display: flex;
   flex: 1;
   height: 100%;
-`;
+  `;
 const DetailsContainer = styled.div`
   display: flex;
   flex: 2;

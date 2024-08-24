@@ -4,8 +4,8 @@ export const theme = {
       primaryShade1: "#1e7ae6",
       primaryShade2: "#023B78",
       primaryShade3: "#1660b4",
-      primaryShade4: "#12539b",
-      primaryShade5: "#0e4682",
+      primaryShade4: "#55A6FF",
+      primaryShade5: "#F2F8FF",
       primaryTint1: "#4a9aff",
       primaryTint2: "#73abff",
       primaryTint3: "#9bbcff",
@@ -20,6 +20,7 @@ export const theme = {
     neutralCollors: {
       gray150: "#E3EAEF",
       gray200: "#D8DFE6",
+      gray500: "#88929C",
       gray600: "#77818C"
     },
     fonts: {
