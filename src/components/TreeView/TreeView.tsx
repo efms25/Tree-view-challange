@@ -1,8 +1,11 @@
+import BranchView from '../BranchView/BranchView'
 import {Container } from './TreeView.styles'
 
 function TreeView() {
   return (
-    <Container>TreeView</Container>
+    <Container>
+      <BranchView />
+    </Container>
   )
 }
 
