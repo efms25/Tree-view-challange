@@ -2,9 +2,13 @@ import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
-  gap: 4px;
-  padding: 10px 5px;
+  flex-direction:  column;
 `;
+const ParentContaier = styled.div`
+  display: flex;
+  padding: 3px;
+  cursor: pointer;
+`
 const Icon = styled.div`
   .injected-svg {
     fill: ${({ theme, status }: any) =>
@@ -27,6 +31,9 @@ const TitleBox = styled.div`
     svg path {
         fill: ${({ theme, isActive }: any) => isActive ? "#FFF" : theme.colors.primary}
     }
+    &:hover {
+    background: rgba(32,32,32,0.1)
+  }
 `;
 
 const ArrowButton = styled.button`
@@ -35,4 +42,15 @@ const ArrowButton = styled.button`
   outline: none;
   cursor: pointer;
 `;
-export { Container, Icon, TitleBox, ArrowButton };
+
+const ChildrenContainer = styled.div`
+  display: flex;
+  span.marker-line {
+    border-right: solid 1px ${({theme}:styled) => theme.neutralCollors.gray200};
+    width: 1px;
+    height: calc(auto - 20px);
+    margin: 0 10px 0 12px;
+    flex: 0 1 auto;
+  }
+`
+export { Container, Icon, TitleBox, ArrowButton, ChildrenContainer, ParentContaier };
