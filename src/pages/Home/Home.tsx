@@ -1,3 +1,4 @@
+import React from 'react'
 import AssetDetails from "../../components/AssetDetails/AssetDetails";
 import AssetTag from "../../components/AssetTag/AssetTag";
 import Header from "../../components/Header/Header";
@@ -11,7 +12,7 @@ import {
   ContentContainer
 } from "./Home.styles";
 
-function Home() {
+function Home(): React.FC {
   return (
     <Container>
       <Header />
