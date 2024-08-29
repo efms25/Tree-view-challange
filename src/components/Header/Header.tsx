@@ -1,44 +1,56 @@
-import { useContext, useEffect, useState } from 'react';
-import UnitButton from '../UnitButton/UnitButton';
-import tractianLogo from '../../assets/LOGO_TRACTIAN.svg'
-import GoldIcon from '../../assets/icons/Gold.svg'
+import { Suspense, useContext, useEffect, useState } from "react";
+import UnitButton from "../UnitButton/UnitButton";
+import tractianLogo from "../../assets/LOGO_TRACTIAN.svg";
+import GoldIcon from "../../assets/icons/Gold.svg";
 import { Container, UnitButtonsContainer } from "./Header.styles";
-import { AppContext } from '../../contexts/AppContext';
-import { fetchCompanies } from '../../services/contentService';
-import { ICompanies } from '../../types/content.type';
+import { AppContext } from "../../contexts/AppContext";
+import { fetchCompanies } from "../../services/contentService";
+import { ICompanies } from "../../types/content.type";
 
 function Header(): any {
-  const [companies, setCompanies] = useState<ICompanies|null>(null)
-  const {setCompanyId, companyId}: any = useContext(AppContext)
+  const [companies, setCompanies] = useState<ICompanies | null>(null);
+  const { setCompanyId, companyId, setLoading }: any = useContext(AppContext);
 
   useEffect(() => {
     const fetchCompaniesData = async () => {
       try {
+        setLoading(true);
         const response = await fetchCompanies();
-        setCompanies(response)
-
+        setCompanies(response);
       } catch (err) {
-        console.log('fetch companies error: ', err)
+        console.log("fetch companies error: ", err);
+      } finally {
+        setLoading(true);
       }
-    }
+    };
     fetchCompaniesData();
-  },[])
+  }, []);
 
   const handleSelectCompany = (id: string) => {
     setCompanyId(id);
-  }
+  };
 
   return (
     <Container>
       <a href="#">
         <img src={tractianLogo} className="logo" alt="Vite logo" />
       </a>
-      <UnitButtonsContainer>
-        {companies && companies.map(({name, id}: ICompanies) => {
-          return <UnitButton onClick={() => handleSelectCompany(id)} icon={GoldIcon} isActive={id === companyId}>{name}</UnitButton>
-        })}
-        
-      </UnitButtonsContainer>
+      <Suspense fallback={() => <span>Carregando...</span>}>
+        <UnitButtonsContainer>
+          {companies &&
+            companies.map(({ name, id }: ICompanies) => {
+              return (
+                <UnitButton
+                  onClick={() => handleSelectCompany(id)}
+                  icon={GoldIcon}
+                  isActive={id === companyId}
+                >
+                  {name}
+                </UnitButton>
+              );
+            })}
+        </UnitButtonsContainer>
+      </Suspense>
     </Container>
   );
 }

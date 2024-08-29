@@ -1,18 +1,21 @@
-import React from 'react'
+import React, { useContext } from "react";
 import AssetDetails from "../../components/AssetDetails/AssetDetails";
 import AssetTag from "../../components/AssetTag/AssetTag";
 import Header from "../../components/Header/Header";
 import TreeView from "../../components/TreeView/TreeView";
+import { AppContext } from "../../contexts/AppContext";
 import {
   Container,
   BodyContainer,
   BreadcrumbContainer,
   TreeViewContainer,
   DetailsContainer,
-  ContentContainer
+  ContentContainer,
 } from "./Home.styles";
 
 function Home(): React.FC {
+  const { companyId }: any = useContext(AppContext);
+
   return (
     <Container>
       <Header />
@@ -30,11 +33,9 @@ function Home(): React.FC {
           </div>
         </BreadcrumbContainer>
         <ContentContainer>
-          <TreeViewContainer>
-            <TreeView />
-          </TreeViewContainer>
+          <TreeViewContainer>{companyId ? <TreeView /> : "Selecione uma companhia na barra de navegação."}</TreeViewContainer>
           <DetailsContainer>
-            <AssetDetails type="energy" status="operating"/>
+            <AssetDetails type="energy" status="operating" />
           </DetailsContainer>
         </ContentContainer>
       </BodyContainer>

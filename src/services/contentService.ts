@@ -7,12 +7,14 @@ const fetchCompanies = async (): Promise<ICompanies> => {
     return res.data
 }
 
-const fetchLocations = async (companyId: string): Promise<ILocations> => {
+const fetchLocations = async (companyId?: string): Promise<ILocations|null> => {
+    if(!companyId) return null
     const res = await apiInstance.get<ILocations>(ENDPOINTS.LOCATIONS.replace(":companyId", companyId));
     return res.data;
 }
 
-const fetchAssets = async (companyId: string): Promise<IAssets> => {
+const fetchAssets = async (companyId?: string): Promise<IAssets|null> => {
+    if(!companyId) return null
     const res = await apiInstance.get<IAssets>(ENDPOINTS.ASSETS.replace(":companyId", companyId));
     return res.data;
 }
