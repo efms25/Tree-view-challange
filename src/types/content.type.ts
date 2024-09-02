@@ -2,6 +2,7 @@ export interface ILocations {
     id: string,
     name: string,
     parentId?: string
+    children?: Array<ILocations | IAssets>
 }
 
 export interface IAssets {
@@ -13,6 +14,7 @@ export interface IAssets {
     status?: string,
     gatewayId?: string,
     locationId?: string  
+    children?: Array<any>
 }
 
 export interface ICompanies {

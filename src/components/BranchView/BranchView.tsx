@@ -40,11 +40,11 @@ function BranchView({
   return (
     <Container>
       <ParentContaier>
-        {children && (
+        {(children && children.length) ? (
           <ArrowButton type="button">
             <ReactSVG src={DownIcon} />
           </ArrowButton>
-        )}
+        ) : <span className="arrow-button-space"></span>}
         <TitleBox isActive={isActive}>
           <span>
             <ReactSVG src={branchIcon} />
