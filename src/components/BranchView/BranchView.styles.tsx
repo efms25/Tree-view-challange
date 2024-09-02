@@ -51,10 +51,16 @@ const ArrowButton = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
+  transform: rotate(-90deg);
+  transition: transform 0.2s ease;
+  &.expanded {
+    transform: rotate(0deg);
+  }
 `;
 
 const ChildrenContainer = styled.div`
-  display: flex;
+  display: ${({expanded}:any) => expanded ? 'flex' : 'none'};;
+  overflow: hidden;
   span.marker-line {
     border-right: solid 1px
       ${({ theme }: styled) => theme.neutralCollors.gray200};

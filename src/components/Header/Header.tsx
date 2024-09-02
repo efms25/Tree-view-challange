@@ -8,7 +8,7 @@ import { fetchCompanies } from "../../services/contentService";
 import { ICompanies } from "../../types/content.type";
 
 function Header(): any {
-  const [companies, setCompanies] = useState<ICompanies | null>(null);
+  const [companies, setCompanies] = useState<Array<ICompanies | null>>(null);
   const { setCompanyId, companyId, setLoading }: any = useContext(AppContext);
 
   useEffect(() => {
@@ -38,9 +38,10 @@ function Header(): any {
       <Suspense fallback={() => <span>Carregando...</span>}>
         <UnitButtonsContainer>
           {companies &&
-            companies.map(({ name, id }: ICompanies) => {
+            companies.map(({ name, id }: any) => {
               return (
                 <UnitButton
+                  key={id}
                   onClick={() => handleSelectCompany(id)}
                   icon={GoldIcon}
                   isActive={id === companyId}

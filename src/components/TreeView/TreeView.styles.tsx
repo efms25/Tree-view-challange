@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Container = styled.div`
-    flex: 1;
-    border: solid 1px ${({theme}:any) => theme.neutralCollors.gray200};
-    border-radius: 2px;
-`
+  flex: 1;
+  border: solid 1px ${({ theme }: any) => theme.neutralCollors.gray200};
+  border-radius: 2px;
+  overflow: auto;
+  width: 100%;
+`;
 
-export {
-    Container
-}
+export { Container };

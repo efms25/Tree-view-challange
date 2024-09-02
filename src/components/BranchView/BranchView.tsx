@@ -21,6 +21,9 @@ function BranchView({
   branchType = "",
   isActive,
   title,
+  onClick,
+  expanded,
+  onExpandClick
 }: any) {
   let branchIcon;
 
@@ -41,11 +44,11 @@ function BranchView({
     <Container>
       <ParentContaier>
         {(children && children.length) ? (
-          <ArrowButton type="button">
+          <ArrowButton className={expanded ? 'expanded' : ''} onClick={onExpandClick} type="button">
             <ReactSVG src={DownIcon} />
           </ArrowButton>
         ) : <span className="arrow-button-space"></span>}
-        <TitleBox isActive={isActive}>
+        <TitleBox isActive={isActive} onClick={onClick}>
           <span>
             <ReactSVG src={branchIcon} />
           </span>
@@ -59,7 +62,7 @@ function BranchView({
           </div>
         </TitleBox>
       </ParentContaier>
-      <ChildrenContainer>
+      <ChildrenContainer expanded={expanded}>
         { children && <span className="marker-line"/>}
         <div>{children}</div>
       </ChildrenContainer>

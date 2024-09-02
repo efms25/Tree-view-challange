@@ -1,3 +1,4 @@
+import {produce} from "immer";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../contexts/AppContext";
 import { fetchAssets, fetchLocations } from "../../services/contentService";
@@ -94,12 +95,12 @@ function TreeView() {
                     buildTree(n, childrenLocations, true, assetsTree)
                   )
                 : [];
-                if (assetsTree) {
-                  const assetsChildren = assetsTree.filter(
-                    (asset) => asset.locationId === node.id
-                  );
-                  children = [...children, ...assetsChildren];
-                }
+              if (assetsTree) {
+                const assetsChildren = assetsTree.filter(
+                  (asset) => asset.locationId === node.id
+                );
+                children = [...children, ...assetsChildren];
+              }
 
               return {
                 ...node,
@@ -127,13 +128,25 @@ function TreeView() {
     }
   }, [appContext?.companyId]);
 
-  const renderTree = (node: ILocations | IAssets) => {
-    let branchType: string = '';
+  const handleExpandToggle = (node: string) => {
+    setExpanded(
+      produce((draft: any) => {
+        if (draft.has(node)) {
+          draft.delete(node);
+          return;
+        }
+        draft.add(node);
+      })
+    );
+  };
 
-    if(isLocation(node)) {
-      branchType = 'location'
-    } else if (node.children && node.children.length ) {
-      branchType = 'asset'
+  const renderTree = (node: ILocations | IAssets) => {
+    let branchType: string = "";
+
+    if (isLocation(node)) {
+      branchType = "location";
+    } else if (node.children && node.children.length) {
+      branchType = "asset";
     }
 
     return (
@@ -144,7 +157,9 @@ function TreeView() {
         status={(node as IAssets).status}
         isActive={activeNode === node.id}
         expanded={expanded.has(node.id)}
+        onExpandClick={() => handleExpandToggle(node.id)}
         branchType={branchType}
+        onClick={() => setActiveNode(node.id)}
       >
         {node.children && node.children.map((n) => renderTree(n))}
       </BranchView>
