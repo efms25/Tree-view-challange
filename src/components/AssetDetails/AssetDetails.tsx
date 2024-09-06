@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   Container,
   Header,
@@ -13,15 +14,20 @@ import BoltIcon from "../../assets/icons/bolt.svg";
 import ImboxIcon from "../../assets/icons/Inbox.svg";
 import RouterIcon from "../../assets/icons/MdOutlineRouter.svg";
 import SensorIcon from "../../assets/icons/Sensor.svg";
+import { AppContext } from "../../contexts/AppContext";
 
-function AssetDetails({ status, assetName, type, ...props }: any) {
+function AssetDetails() {
+
+  const appContext = useContext(AppContext);
+
+
   return (
     <Container>
       <Header>
-        <span className="asset-title">{assetName || "-"}</span>
-        {type && (
-          <Icon status={status}>
-            <ReactSVG src={type === "energy" ? BoltIcon : GreenDotIcon} />
+        <span className="asset-title">{appContext?.selectedBranch?.name || "-"}</span>
+        {appContext?.selectedBranch?.sensorType && (
+          <Icon status={appContext?.selectedBranch?.status}>
+            <ReactSVG src={appContext?.selectedBranch?.sensorType === "energy" ? BoltIcon : GreenDotIcon} />
           </Icon>
         )}
       </Header>
@@ -34,12 +40,12 @@ function AssetDetails({ status, assetName, type, ...props }: any) {
           <RightInfoContainer>
             <div>
               <strong>Tipo de Equipamento</strong>
-              <span>{props.deviceType || "-"}</span>
+              <span>{"-"}</span>
             </div>
             <span className="divider" />
             <div>
               <strong>Responsáveis</strong>
-              <span>{props.owners || "-"}</span>
+              <span>{"-"}</span>
             </div>
           </RightInfoContainer>
         </div>
@@ -48,11 +54,11 @@ function AssetDetails({ status, assetName, type, ...props }: any) {
           <BottomInfoContainer>
             <div>
               <strong>Sensor</strong>
-              <span><img src={SensorIcon} alt="sensor icon" />{props.sensor || "-"}</span>
+              <span><img src={SensorIcon} alt="sensor icon" />{ "-"}</span>
             </div>
             <div>
               <strong>Receptor</strong>
-              <span><img src={RouterIcon} alt="router icon" />{props.router || "-"}</span>
+              <span><img src={RouterIcon} alt="router icon" />{"-"}</span>
             </div>
           </BottomInfoContainer>
         </div>

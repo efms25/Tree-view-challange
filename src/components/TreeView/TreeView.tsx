@@ -1,11 +1,10 @@
-import {produce} from "immer";
+import { produce } from "immer";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../contexts/AppContext";
 import { fetchAssets, fetchLocations } from "../../services/contentService";
 import { IAssets, ILocations } from "../../types/content.type";
 import { isLocation } from "../../utils/handleInstances";
 import BranchView from "../BranchView/BranchView";
-import { ChildrenContainer } from "../BranchView/BranchView.styles";
 import { Container } from "./TreeView.styles";
 
 function TreeView() {
@@ -140,6 +139,11 @@ function TreeView() {
     );
   };
 
+  const handleSelectBranch = (node: ILocations | IAssets) => {
+    setActiveNode(node?.id);
+    appContext!.setSelectedBranch(node);
+  };
+
   const renderTree = (node: ILocations | IAssets) => {
     let branchType: string = "";
 
@@ -159,7 +163,7 @@ function TreeView() {
         expanded={expanded.has(node.id)}
         onExpandClick={() => handleExpandToggle(node.id)}
         branchType={branchType}
-        onClick={() => setActiveNode(node.id)}
+        onClick={() => handleSelectBranch(node)}
       >
         {node.children && node.children.map((n) => renderTree(n))}
       </BranchView>
