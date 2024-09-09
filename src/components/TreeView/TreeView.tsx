@@ -144,7 +144,13 @@ function TreeView() {
     appContext!.setSelectedBranch(node);
   };
 
-  const renderTree = (node: ILocations | IAssets) => {
+  const renderTree = (data: Array<ILocations | IAssets>) => {
+    
+
+    return data.map((n) => renderBranch(n))
+  }
+
+  const renderBranch = (node: ILocations | IAssets) => {
     let branchType: string = "";
 
     if (isLocation(node)) {
@@ -165,13 +171,13 @@ function TreeView() {
         branchType={branchType}
         onClick={() => handleSelectBranch(node)}
       >
-        {node.children && node.children.map((n) => renderTree(n))}
+        {node.children && node.children.map((n) => renderBranch(n))}
       </BranchView>
     );
   };
   return (
     <Container>
-      <div>{appContext?.companyId && branchs.map((n) => renderTree(n))}</div>
+      <div>{appContext?.companyId && renderTree(branchs)}</div>
     </Container>
   );
 }

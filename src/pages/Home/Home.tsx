@@ -14,7 +14,16 @@ import {
 } from "./Home.styles";
 
 function Home(): React.FC {
-  const { companyId }: any = useContext(AppContext);
+  const { companyId, filter, setFilter }: any = useContext(AppContext);
+
+  const handleSelectFilter = (elementFilter: string) => {
+    if(filter === elementFilter) {
+      setFilter(null)
+      return
+    }
+    setFilter(elementFilter);
+    
+  }
 
   return (
     <Container>
@@ -26,10 +35,10 @@ function Home(): React.FC {
             <span className="ref-page-text">/ Apex Unit</span>
           </div>
           <div>
-            <AssetTag isSensor isActive>
+            <AssetTag isSensor onClick={() => handleSelectFilter('sensor')} isActive={filter === 'sensor'}>
               Sensor de Energia
             </AssetTag>
-            <AssetTag isCritical>Crítico</AssetTag>
+            <AssetTag isCritical onClick={() => handleSelectFilter('critical')} isActive={filter === 'critical'}>Crítico</AssetTag>
           </div>
         </BreadcrumbContainer>
         <ContentContainer>

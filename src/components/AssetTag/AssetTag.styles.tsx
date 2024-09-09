@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 const Box = styled.div`
+  cursor: pointer;
+  user-select: none;
   display: flex;
   gap: 6px;
   background: ${({ isActive, theme }: any) =>

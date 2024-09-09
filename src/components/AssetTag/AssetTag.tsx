@@ -9,6 +9,7 @@ function AssetTag({
   icon = null,
   isCritical,
   isSensor,
+  onClick
 }: any) {
   let componentIcon: string = icon;
 
@@ -18,7 +19,7 @@ function AssetTag({
   }
 
   return (
-    <Box isActive={isActive}>
+    <Box isActive={isActive} onClick={onClick}>
       {componentIcon && (
         <Icon  isActive={isActive}>
             <ReactSVG src={componentIcon} />
